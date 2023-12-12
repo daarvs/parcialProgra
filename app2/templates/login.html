@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar sesión</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5; /* Tonos claros para el fondo */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-size: medium;
+        }
+
+        .form-container {
+            width: 350px;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333; /* Color de texto más oscuro */
+        }
+
+        .form-group input {
+            width: 90%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: medium;
+        }
+
+        .form-group input[type="submit"] {
+            background-color: #00a7b3;
+            color: white;
+            cursor: pointer;
+            font-size: medium;
+            padding: 12px;
+            width: auto;
+        }
+
+        .form-group input[type="submit"]:hover {
+            background-color: #00a7b3;
+        }
+
+        .error-message {
+            color: red;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .form-group a {
+            text-decoration: none;
+            color: #00a7b3;
+            font-size: medium;
+        }
+
+        .form-group a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="form-container">
+        {% if messages %}
+        {% for message in messages %}
+        <p class="error-message">{{ message }}</p>
+        {% endfor %}
+        {% endif %}
+        <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="{{ form.username.id_for_label }}">Nombre de usuario:</label>
+                {{ form.username }}
+            </div>
+            <div class="form-group">
+                <label for="{{ form.password.id_for_label }}">Contraseña:</label>
+                {{ form.password }}
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Iniciar sesión">
+            </div>
+        </form>
+        <div class="form-group">
+            <a href="{% url 'registro' %}">Registrarse</a>
+        </div>
+    </div>
+</body>
+
+</html>

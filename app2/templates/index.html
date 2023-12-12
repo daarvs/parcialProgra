@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividad 19</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 24px;
+            margin-bottom: 30px;
+        }
+        a {
+            margin: 10px auto;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #ffffff;
+            text-decoration: none;
+            text-align: center;
+            border: 1px solid #007bff;
+            border-radius: 5px;
+            width: 200px;
+            display: block;
+            transition: background-color 0.3s ease;
+            font-size: 16px;
+        }
+        a:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+        .logout-link {
+            background-color: #dc3545;
+            border-color: #dc3545;
+        }
+        .logout-link:hover {
+            background-color: #c82333;
+            border-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+    {% if es_estudiante or es_admin or es_cajero %}
+        <h1> ¡Bienvenido {{ user.username }} al inicio de la página! </h1>
+    {% else %}
+        <h1> No tienes permisos para acceder a esta página </h1>
+    {% endif %}
+    <a href="{% url 'agregar_proveedor' %}">Agregar proveedor</a>
+    <a href="{% url 'mostrar_proveedores' %}">Mostrar proveedores</a>
+    <a href="{% url 'agregar_producto' %}">Agregar producto</a>
+    <a href="{% url 'mostrar_productos' %}">Mostrar productos</a>
+    <a href="{% url 'agregar_sucursales' %}">Agregar sucursales</a>
+    <a href="{% url 'mostrar_sucursales' %}">Mostrar las sucursales</a>
+    <a href="{% url 'logout' %}" class="logout-link">Cerrar sesión</a>
+</body>
+</html>
